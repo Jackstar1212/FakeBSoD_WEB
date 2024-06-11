@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="win8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Oh No</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css"/>
+    <script type="text/javascript">
+        // 定义错误代码数组
+        var stopCodes = [
+        "APC_INDEX_MISMATCH",
+        "IRQL_NOT_LESS_OR_EQUAL",
+        "REFERENCE_BY_POINTER",
+        "BAD_POOL_HEADER",
+        "MEMORY_MANAGEMENT",
+        "MKMODE_EXCEPTION_NOT_HANDLED",
+        "SYSTEM_SERVICE_EXCEPTION",
+        "INTERRUPT_EXCEPTION_NOT_HANDLED",
+        "MULTIPLE_IRP_COMPLETE_REQUESTS",
+        "PAGE_FAULT_IN_NONPAGED_AREA",
+        "REGISTRY_ERROR",
+        "KERNEL_DATA_INPAGE_ERROR",
+        "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
+        "UNEXPECTED_KERNEL_MODE_TRAP",
+        "DRIVER_POWER_STATE_FAILURE",
+        "INTERNAL_POWER_ERROR",
+        "ATTEMPTED_WRITE_TO_READONLY_MEMORY",
+        "BAD_POOL_CALLER",
+        "DRIVER_UNLOADED_WITHOUT_CANCELLING_PENDING_OPERATIONS",
+        "DRIVER_IRQL_NOT_LESS_OR_EQUAL",
+        "SYSTEM_SCAN_AT_RAISED_IRQL_CAUGHT_IMPROPER_DRIVER_UNLOAD",
+        "ACTIVE_EX_WORKER_THREAD_TERMINATION",
+        "CRITICAL_PROCESS_DIED",
+        "ATTEMPTED_EXECUTE_OF_NOEXECUTE_MEMORY",
+        "CLOCK_WATCHDOG_TIMEOUT",
+        "CRITICAL_STRUCTURE_CORRUPTION",
+        "WDF_VIOLATION",
+        "VIDEO_MEMORY_MANAGEMENT_INTERNAL",
+        "VIDEO_DXGKRNL_FATAL_ERROR",
+        "VIDEO_TDR_FAILURE",
+        "VIDEO_SCHEDULER_INTERNAL_ERROR",
+        "WHEA_UNCORRECTABLE_ERROR",
+        "FAULTY_HARDWARE_CORRUPTED_PAGE",
+        "DPC_WATCHDOG_VIOLATION",
+        "KERNEL_SECURITY_CHECK_FAILURE",
+        "KERNEL_MODE_HEAP_CORRUPTION",
+        "PDC_WATCHDOG_TIMEOUT",
+        "UNEXPECTED_STORE_EXCEPTION",
+        "MICROCODE_REVISION_MISMATCH",
+        "WIN32K_POWER_WATCHDOG_TIMEOUT",
+        "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED_M",
+        "UNEXPECTED_KERNEL_MODE_TRAP_M",
+        "USER_MODE_HEALTH_MONITOR",
+        "NTFS_FILE_SYSTEM",
+        "VIDEO_ENGINE_TIMEOUT_DETECTED",
+        "VIDEO_TDR_TIMEOUT_DETECTED"
+        ];
+        
+        // 从数组中随机选择错误代码的函数
+        function getRandomStopCode() {
+            return stopCodes[Math.floor(Math.random() * stopCodes.length)];
+        }
+        
+        // 定义崩溃驱动数组
+        var Crashsys = [
+          "kernel.sys",
+          "vga.sys",
+          "hiberfil.sys",
+          "pagefile.sys",
+          "swapfile.sys",
+          "ntfs.sys",
+          "ntoskrnl.exe",
+          "nvlddmkm.sys",
+          "win32kfull.sys",
+          "win32kfull.sys",
+          "tcpip.sys",
+          "dxgkrnl.sys",
+          "igdkmdn64.sys",
+          "netio.sys"
+        ]
+
+        // 从数组中随机选择崩溃驱动的函数
+        function getRandomCrashsys() {
+            return Crashsys[Math.floor(Math.random() * Crashsys.length)];
+        }
+
+        // 生成1到8之间的随机整数
+        function getRandomIncrement() {
+            return Math.floor(Math.random() * 8) + 1;
+        }
+    </script>
+</head>
+
+<body onload="startProgress()">
+    <div id="sadface"></div>
+    <p id="win8topblock">
+        Your PC ran into a problem and needs to restart. We're <br>
+        just collecting some error info, and then we'll restart for <br>
+        you.</p>
+    <div id="percent">0% complete</div>
+    <p id="win8errorblock"> 
+        <img src="qr.png" alt="qr" align="left" height="160px" width="160px"> 
+        For more information about this issue and possible fixes, visit http://windows.com/stopcode</br></br></br>
+        <p3>If you call a support person, give them this info:<br></br>Stop code: <span id="code"></span><br><br>What failed: <span id="crashsyscode"></span></p3>
+    </p>
+
+    <script>
+        var i = 0;
+        function startProgress() {
+          document.getElementById('code').innerText = getRandomStopCode();
+          document.getElementById('crashsyscode').innerText = getRandomCrashsys();
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("percent");
+            var pers = 0;
+            var id = setInterval(frame, 1800);
+            function frame() {
+              if (pers >= 100) {
+                clearInterval(id);
+                i = 0;
+                elem.innerHTML = "0% complete";
+                // 确保每次循环结束并重新开始时更新错误代码
+                document.getElementById('code').innerText = getRandomStopCode();
+                document.getElementById('crashsyscode').innerText = getRandomCrashsys();
+                startProgress();
+              } else {
+                var increment = getRandomIncrement();
+                pers = Math.min(pers + increment, 100);
+                elem.innerHTML = pers  + "% complete";
+              }
+            }
+          }
+        }
+
+        // 页面加载时立即开始进度动画
+        window.onload = startProgress;
+
+    </script>
+</body>
+</html>
