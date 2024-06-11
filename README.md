@@ -1,6 +1,6 @@
 # FakeBSoD_WEB
 
-A fake windows 11 Bluescreen of death(BSod) webpage.
+A fake windows 11 blue screen of death(BSod) webpage.
 
 _Win11 BSod simulator_
 
