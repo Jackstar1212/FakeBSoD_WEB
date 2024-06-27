@@ -37,3 +37,13 @@ _Win11 BSod simulator_
 此项目遵循 MIT License
 
 Have fun!
+
+## 注意事项
+
+**All my projects are only uploaded and distributed on Github and my personal blog, do not trust any information stolen by CSDN platform!**
+
+**我的所有项目只在GitHub和个人博客上上传和分发，请勿相信CSDN平台偷取的任何信息！**
+
+CSDN = Copy, Steal and Download-paid Net
+
+请不要相信C.S.D.N.上的任何搬运内容，最好不要使用此平台！
